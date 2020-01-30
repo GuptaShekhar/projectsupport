@@ -1,19 +1,32 @@
-// Call in installed dependencies
-const express = require('express');
+// import dependencies
+const express = require('express')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const mainRoutes = require('./server/routes/main');
 
-// set up express app
+
+// set up dependencies
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(logger('dev'));
 
-// set up port number
+// set up mongoose
+mongoose.connect('mongodb://localhost/projectsupport')
+  .then(()=> {
+    console.log('Database connected');
+  })
+  .catch((error)=> {
+    console.log('Error connecting to database');
+  });
+
+// set up port
 const port = 5035;
 
-// set up home route
-app.get('/', (request, respond) => {
-  respond.status(200).json({
-    message: 'Welcome to Project Support',
-  });
-});
+// set up route
+app.use(mainRoutes);
 
-app.listen(port, (request, respond) => {
-  console.log(`Our server is live on ${port}. Yay!`);
+app.listen(port, () => {
+  console.log(`Our server is running on port ${port}`);
 });
