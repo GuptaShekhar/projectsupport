@@ -1,0 +1,33 @@
+{
+  "name": "projectsupport",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuptaShekhar/projectsupport.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuptaShekhar/projectsupport/issues"
+  },
+  "homepage": "https://github.com/GuptaShekhar/projectsupport#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.10",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.18.0",
+    "nodemon": "^2.0.2"
+  }
+}
