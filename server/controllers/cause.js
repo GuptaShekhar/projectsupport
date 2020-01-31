@@ -40,7 +40,7 @@ exports.getSingleCause = function(req, res) {
         });
      });
   }
-  
+
 // create new cause
 exports.createCause = function(req, res) {
   const cause = new Cause({
@@ -64,4 +64,38 @@ exports.createCause = function(req, res) {
         error: error.message,
       });
     });
+}
+
+// update cause
+exports.updateCause = function(req, res) {
+    const id = req.params.causeId;
+    const updateObject = req.body;
+    Cause.update({ _id:id }, { $set:updateObject })
+      .exec()
+      .then(() => {
+        res.status(200).json({
+          success: true,
+          message: 'Cause is updated',
+          updateCause: updateObject,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: 'Server error. Please try again.'
+        });
+      });
+}
+
+// delete a cause
+exports.deleteCause = function(req, res) {
+    const id = req.params.causeId;
+    Cause.findByIdAndRemove(id)
+      .exec()
+      .then(()=> res.status(204).json({
+        success: true,
+      }))
+      .catch((err) => res.status(500).json({
+        success: false,
+      }));
 }
